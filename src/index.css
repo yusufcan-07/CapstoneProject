@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.main {
+  padding: 2rem;
+}
+
+.container-height {
+  height: 5rem; /* Your custom height value */
+}
+
+.sidebar-height {
+  height: 33rem; /* Your custom height value */
+}
+
+.topbar-height{
+  height: 6rem;
+}
+
+.content {
+  margin-top: 6rem;
+  margin-left: 20rem;
+  padding: 1rem;
+}
