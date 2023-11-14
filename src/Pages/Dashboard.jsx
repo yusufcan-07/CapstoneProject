@@ -1,9 +1,9 @@
 /*Dashboard.jsx*/
-import Stock from "./Stock";
+import Stock from "../Components/Stock";
 import React, { useRef, useState } from "react";
-import Watchlist from "./Watchlist";
+import Watchlist from "../Components/Watchlist";
 import placeholderImage from "../Assets/chart.png";
-import TemplateChart from "./TemplateChart";
+import TemplateChart from "../Components/TemplateChart";
 const stocksData = [
   {
     //TODO logoUrl koymak araştırılacak
