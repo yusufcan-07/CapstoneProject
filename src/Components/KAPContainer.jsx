@@ -16,8 +16,8 @@ export default function KAPContainer({
         justifyContent: "space-between",
       }}
     >
-      <div>{stockCodes}</div>
-      <div style={{ textAlign: "center" }}>
+      <div className="w-10">{stockCodes}</div>
+      <div style={{ textAlign: "left" }} className="w-3/5">
         <h2>{title}</h2>
         <p>{name}</p>
       </div>

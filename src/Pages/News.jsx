@@ -13,12 +13,26 @@ export default function News() {
         const responseData = JSON.parse(result.contents);
         if (Array.isArray(responseData) && responseData.length > 0) {
           // Extracting required data from the array of responses
-          const extractedDisclosures = responseData.map((item) => ({
-            title: item?.basic?.title || "",
-            date: item?.basic?.publishDate || "N/A",
-            companyName: item?.basic?.companyName || "Unknown",
-            stockCodes: item?.basic?.stockCodes || "N/A",
-          }));
+          const extractedDisclosures = responseData.map((item) => {
+            const stockCodes = item?.basic?.stockCodes || "N/A";
+            const relatedStocks = item?.basic?.relatedStocks || "N/A";
+            
+            let combinedStocks = "N/A";
+            if (stockCodes !== "N/A" && relatedStocks !== "N/A") {
+              combinedStocks = stockCodes.concat(", ", relatedStocks);
+            } else if (stockCodes !== "N/A") {
+              combinedStocks = stockCodes;
+            } else if (relatedStocks !== "N/A") {
+              combinedStocks = relatedStocks;
+            }
+
+            return {
+              title: item?.basic?.title || "",
+              date: item?.basic?.publishDate || "N/A",
+              companyName: item?.basic?.companyName || "Unknown",
+              stockCodes: combinedStocks,
+            };
+          }).filter(disclosure => disclosure.combinedStocks !== "N/A");
           setDisclosures(extractedDisclosures);
         }
       })
