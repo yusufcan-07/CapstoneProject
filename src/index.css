@@ -14,7 +14,7 @@
   height: 33rem; /* Your custom height value */
 }
 
-.topbar-height{
+.topbar-height {
   height: 6rem;
 }
 
@@ -23,3 +23,52 @@
   margin-left: 20rem;
   padding: 1rem;
 }
+
+/*Dashboard styles*/
+
+.watchlist-container {
+  /* Your existing styles */
+  /* ... */
+  overflow: hidden; /* Hide the main container's scrollbar */
+}
+
+.watchlist-scroll-container {
+  max-height: 500px; /* Set the max height for the scrollable content */
+  overflow-y: auto;
+  width: calc(100% + 20px);
+  margin-right: -20px;
+  padding-right: 20px;
+}
+
+/* Hide the scrollbar in Webkit browsers (Chrome, Safari, etc.) */
+.watchlist-scroll-container::-webkit-scrollbar {
+  width: 0;
+}
+
+.watchlist-scroll-container::-webkit-scrollbar-thumb {
+  background-color: #888888;
+}
+
+/* Hide scrollbar in Firefox */
+.watchlist-scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: #888888 transparent;
+}
+
+.portfolio-scroll-container {
+  /* Set the max height for the scrollable content */
+  overflow-x: auto;
+}
+.portfolio-scroll-container::-webkit-scrollbar {
+  width: 0;
+}
+
+.dashboard-scroll-container {
+  overflow-y: auto;
+}
+
+.dashboard-scroll-container::-webkit-scrollbar {
+  width: 0;
+}
+
+/*Dashboard styles*/
