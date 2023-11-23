@@ -30,7 +30,7 @@ export default function Portfolio() {
           <ApexChart />
         </div>
       </div>
-      <div style={{ backgroundColor: "#c3e5fe" }}>
+      <div>
         <h2 className="text-lg font-bold mb-4 pb-4">Trade History</h2>
         <div className="flex flex-col">
           <div className="flex font-bold p-3 m-3 border-2 border-black">
@@ -46,6 +46,7 @@ export default function Portfolio() {
             <div
               key={index}
               className="flex items-center border-black border-2 p-3 m-3 rounded-full"
+              style={{ backgroundColor: "#f5f7f9" }}
             >
               <div className="flex-1 text-center">{trade.stockName}</div>
               <div className="flex-1 text-center">{trade.amount}</div>
