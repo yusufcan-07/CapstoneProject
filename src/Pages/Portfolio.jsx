@@ -1,5 +1,5 @@
 import ApexChart from "../Components/PortfolioChart";
-
+import DonutChart from "../Components/DonutChart";
 export default function Portfolio() {
   // Dummy trade history data
   const tradeHistoryData = [
@@ -24,13 +24,25 @@ export default function Portfolio() {
 
   return (
     <div className="content">
-      <div>
-        <h1 className="text-3xl font-bold mb-4">Portfolio</h1>
-        <div style={{ marginLeft: "auto", width: "60%" }}>
+      <h1 className="text-3xl font-bold mb-4">Portfolio</h1>
+      <div className="flex">
+        <div
+          className="border-2 rounded-md m-4 p-2"
+          style={{
+            flex: "0.5",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <DonutChart />
+        </div>
+        <div className="border-2 rounded-md m-4 p-2" style={{ flex: "1" }}>
           <ApexChart />
         </div>
       </div>
-      <div>
+
+      <div className="m-4 p-2 border-2 rounded-md">
         <h2 className="text-lg font-bold mb-4 pb-4">Trade History</h2>
         <div className="flex flex-col">
           <div className="flex font-bold p-3 m-3 border-2 border-black">
