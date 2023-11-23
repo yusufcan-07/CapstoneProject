@@ -1,0 +1,502 @@
+[
+  {
+    "stockCode": "AEFES",
+    "stockName": "Anadolu Efes",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/AEFES.png"
+  },
+  {
+    "stockCode": "AGHOL",
+    "stockName": "Anadolu Grup Holding",
+    "stockImage": "https://web-node-cdn.foreks.com/cdn/symbol-logos/BIST/AGHOL.png"
+  },
+  {
+    "stockCode": "AHGAZ",
+    "stockName": "Ahlatcı Doğalgaz",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/ahgaz_icon.png"
+  },
+  {
+    "stockCode": "AKBNK",
+    "stockName": "Akbank",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/akbnk_icon.png"
+  },
+  {
+    "stockCode": "AKCNS",
+    "stockName": "Akçansa",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/AKCNS.png"
+  },
+  {
+    "stockCode": "AKFGY",
+    "stockName": "Akfen GYO",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/akfgy_icon.png"
+  },
+  {
+    "stockCode": "AKFYE",
+    "stockName": "Akfen Yenilenebilir Enerji",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/akfye_icon.png"
+  },
+  {
+    "stockCode": "AKSA",
+    "stockName": "Aksa",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/AKSA.png"
+  },
+  {
+    "stockCode": "AKSEN",
+    "stockName": "Aksa Enerji",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/AKSEN.png"
+  },
+  {
+    "stockCode": "ALARK",
+    "stockName": "Alarko Holding",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/alark_icon.png"
+  },
+  {
+    "stockCode": "ALBRK",
+    "stockName": "Albaraka Türk",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/ALBRK.png"
+  },
+  {
+    "stockCode": "ALFAS",
+    "stockName": "Alfa Solar Enerji",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/alfas_icon.png"
+  },
+  {
+    "stockCode": "ARCLK",
+    "stockName": "Arçelik",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/arclk_icon.png"
+  },
+  {
+    "stockCode": "ASELS",
+    "stockName": "Aselsan",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/ASELS.png"
+  },
+  {
+    "stockCode": "ASTOR",
+    "stockName": "Astor Enerji",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/ASTOR.png"
+  },
+  {
+    "stockCode": "BERA",
+    "stockName": "Bera Holding",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/bera_icon.png"
+  },
+  {
+    "stockCode": "BIENY",
+    "stockName": "Bien Yapı Ürünleri",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/BIENY.png"
+  },
+  {
+    "stockCode": "BIMAS",
+    "stockName": "BİM Mağazalar",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/BIMAS.png"
+  },
+  {
+    "stockCode": "BRSAN",
+    "stockName": "Borusan Mannesmann",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/brsan_icon.png"
+  },
+  {
+    "stockCode": "BRYAT",
+    "stockName": "Borusan Yatırım Pazarlama",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/bryat_icon.png"
+  },
+  {
+    "stockCode": "BUCIM",
+    "stockName": "Bursa Çimento",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/bucim_icon.png"
+  },
+  {
+    "stockCode": "CANTE",
+    "stockName": "Can2 Termik",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/CANTE.png"
+  },
+  {
+    "stockCode": "CCOLA",
+    "stockName": "Coca Cola İçecek",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/CCOLA.png"
+  },
+  {
+    "stockCode": "CIMSA",
+    "stockName": "Çimsa",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/CIMSA.png"
+  },
+  {
+    "stockCode": "CWENE",
+    "stockName": "CW Enerji",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/cwene_icon.png"
+  },
+  {
+    "stockCode": "DOAS",
+    "stockName": "Doğuş Otomotiv",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/DOAS_ZdJlaWx.png"
+  },
+  {
+    "stockCode": "DOHOL",
+    "stockName": "Doğan Holding",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/DOHOL.png"
+  },
+  {
+    "stockCode": "ECILC",
+    "stockName": "Eczacıbaşı İlaç",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/ecilc_icon.png"
+  },
+  {
+    "stockCode": "ECZYT",
+    "stockName": "Eczacıbaşı Yatırım",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/eczyt_icon.png"
+  },
+  {
+    "stockCode": "EGEEN",
+    "stockName": "Ege Endüstri",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/trgyo_icon.png"
+  },
+  {
+    "stockCode": "EKGYO",
+    "stockName": "Emlak Konut GYO",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/ekgyo_icon.png"
+  },
+  {
+    "stockCode": "ENJSA",
+    "stockName": "Enerjisa Enerji",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/enjsa_icon.png"
+  },
+  {
+    "stockCode": "ENKAI",
+    "stockName": "Enka İnşaat",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/ENKAI.png"
+  },
+  {
+    "stockCode": "EREGL",
+    "stockName": "Ereğli Demir Çelik",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/eregl_icon.png"
+  },
+  {
+    "stockCode": "EUPWR",
+    "stockName": "Europower Enerji",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/EUPWR.png"
+  },
+  {
+    "stockCode": "EUREN",
+    "stockName": "Europen Endüstri",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/EUREN.png"
+  },
+  {
+    "stockCode": "FROTO",
+    "stockName": "Ford Otosan",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/FROTO_BboUn8E.png"
+  },
+  {
+    "stockCode": "GARAN",
+    "stockName": "Garanti Bankası",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/garan_icn.png"
+  },
+  {
+    "stockCode": "GENIL",
+    "stockName": "Gen İlaç",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/GENIL.png"
+  },
+  {
+    "stockCode": "GESAN",
+    "stockName": "Girişim Elektrik Sanayi",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/gesan_icon.png"
+  },
+  {
+    "stockCode": "GLYHO",
+    "stockName": "Global Yatırım Holding",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/glyho_icon.jpg"
+  },
+  {
+    "stockCode": "GUBRF",
+    "stockName": "Gübre Fabrikaları",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/gubrf_icon.png"
+  },
+  {
+    "stockCode": "GWIND",
+    "stockName": "Galata Wind Enerji",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/gwind_icon.png"
+  },
+  {
+    "stockCode": "HALKB",
+    "stockName": "Halkbank",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/halkb_icon.png"
+  },
+  {
+    "stockCode": "HEKTS",
+    "stockName": "Hektaş",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/HEKTS_aMeBOdv.png"
+  },
+  {
+    "stockCode": "IMASM",
+    "stockName": "İmaş Makina",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/IMASM.png"
+  },
+  {
+    "stockCode": "IPEKE",
+    "stockName": "İpek Doğal Enerji",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/IPEKE.png"
+  },
+  {
+    "stockCode": "ISCTR",
+    "stockName": "İş Bankası",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/isctr_icon_xpp5x0l.png"
+  },
+  {
+    "stockCode": "ISDMR",
+    "stockName": "İskenderun Demir Çelik",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/isdmr_icon.png"
+  },
+  {
+    "stockCode": "ISGYO",
+    "stockName": "İş GYO",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/isgyo_icon%C4%B1.png"
+  },
+  {
+    "stockCode": "ISMEN",
+    "stockName": "İş Menkul Değerler",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/ismen_icon.png"
+  },
+  {
+    "stockCode": "IZMDC",
+    "stockName": "İzmir Demir Çelik",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/izmdc_icon.png"
+  },
+  {
+    "stockCode": "KARSN",
+    "stockName": "Karsan Otomotiv",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/karsn_icon.png"
+  },
+  {
+    "stockCode": "KAYSE",
+    "stockName": "Kayseri Şeker Fabrikası",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/kayse_icon.png"
+  },
+  {
+    "stockCode": "KCAER",
+    "stockName": "Kocaer Çelik",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/kcaer.png"
+  },
+  {
+    "stockCode": "KCHOL",
+    "stockName": "Koç Holding",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/kchol_icon.png"
+  },
+  {
+    "stockCode": "KMPUR",
+    "stockName": "Kimteks Poliuretan",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/kmpur_icon.png"
+  },
+  {
+    "stockCode": "KONTR",
+    "stockName": "Kontrolmatik Teknoloji",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/kontr_icon.png"
+  },
+  {
+    "stockCode": "KONYA",
+    "stockName": "Konya Çimento",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/KONYA.png"
+  },
+  {
+    "stockCode": "KORDS",
+    "stockName": "Kordsa Teknik Tekstil",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/KORDS.png"
+  },
+  {
+    "stockCode": "KOZAA",
+    "stockName": "Koza Madencilik",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/KOZAA.png"
+  },
+  {
+    "stockCode": "KOZAL",
+    "stockName": "Koza Altın",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/KOZAL.png"
+  },
+  {
+    "stockCode": "KRDMD",
+    "stockName": "Kardemir",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/krdmd_icon.png"
+  },
+  {
+    "stockCode": "KZBGY",
+    "stockName": "Kızılbuk GYO",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/KZBGY_ajMpyLf.png"
+  },
+  {
+    "stockCode": "MAVI",
+    "stockName": "Mavi Giyim",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/MAVI.png"
+  },
+  {
+    "stockCode": "MGROS",
+    "stockName": "Migros Ticaret",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/MGROS.png"
+  },
+  {
+    "stockCode": "MIATK",
+    "stockName": "Mia Teknoloji",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/MIATK.png"
+  },
+  {
+    "stockCode": "ODAS",
+    "stockName": "Odas Elektrik",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/ODAS_y6Ht5sX.png"
+  },
+  {
+    "stockCode": "OTKAR",
+    "stockName": "Otokar",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/OTKAR.png"
+  },
+  {
+    "stockCode": "OYAKC",
+    "stockName": "Oyak Çimento",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/oyak_icon.png"
+  },
+  {
+    "stockCode": "PENTA",
+    "stockName": "Penta Teknoloji Ürünleri Dağıtım",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/PENTA.png"
+  },
+  {
+    "stockCode": "PETKM",
+    "stockName": "Petkim",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/petkm_icon.png"
+  },
+  {
+    "stockCode": "PGSUS",
+    "stockName": "Pegasus",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/PGSUS_uGONyz8.png"
+  },
+  {
+    "stockCode": "PSGYO",
+    "stockName": "Pasifik GYO",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/psgyo_icon.png"
+  },
+  {
+    "stockCode": "QUAGR",
+    "stockName": "Qua Granite Hayal Yapı",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/QUA.png"
+  },
+  {
+    "stockCode": "SAHOL",
+    "stockName": "Sabancı Holding",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/sahol_icon.png"
+  },
+  {
+    "stockCode": "SASA",
+    "stockName": "Sasa Polyester",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/SASA_7zFPquG.png"
+  },
+  {
+    "stockCode": "SISE",
+    "stockName": "Şişe Cam",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/sise_icon.png"
+  },
+  {
+    "stockCode": "SKBNK",
+    "stockName": "Şekerbank",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/skbnk_icon.png"
+  },
+  {
+    "stockCode": "SMRTG",
+    "stockName": "Smart Güneş Enerjisi Teknoloji",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/smrtg_icon.png"
+  },
+  {
+    "stockCode": "SNGYO",
+    "stockName": "Sinpaş GYO",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/SNGYO.png"
+  },
+  {
+    "stockCode": "SOKM",
+    "stockName": "Şok Marketler Ticaret",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/SOKM.png"
+  },
+  {
+    "stockCode": "TAVHL",
+    "stockName": "Tav Havalimanları",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/tavhl.png"
+  },
+  {
+    "stockCode": "TCELL",
+    "stockName": "Türkcell",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/tcell_icon.png"
+  },
+  {
+    "stockCode": "THYAO",
+    "stockName": "Türk Hava Yolları",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/thyao_icon.png"
+  },
+  {
+    "stockCode": "TKFEN",
+    "stockName": "Tekfen Holding",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/tkfen_icon.png"
+  },
+  {
+    "stockCode": "TOASO",
+    "stockName": "Tofaş Oto Fabrikaları",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/TOASO.png"
+  },
+  {
+    "stockCode": "TSKB",
+    "stockName": "Türkiye Sınai Kalkınma Bankası",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/TSKB.png"
+  },
+  {
+    "stockCode": "TTKOM",
+    "stockName": "Türk Telekom",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/ttkom_icon.png"
+  },
+  {
+    "stockCode": "TTRAK",
+    "stockName": "Türk Traktör",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/TTRAK_w2N7x4q.png"
+  },
+  {
+    "stockCode": "TUKAS",
+    "stockName": "Tukaş",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/TUKAS.png"
+  },
+  {
+    "stockCode": "TUPRS",
+    "stockName": "Tüpraş",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/tuprs_icon.png"
+  },
+  {
+    "stockCode": "ULKER",
+    "stockName": "Ülker Bisküvi",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/ULKER.png"
+  },
+  {
+    "stockCode": "VAKBN",
+    "stockName": "Vakıflar Bankası",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/vakbn_icon.png"
+  },
+  {
+    "stockCode": "VESBE",
+    "stockName": "Vestel Beyaz Eşya",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/VESBE.png"
+  },
+  {
+    "stockCode": "VESTL",
+    "stockName": "Vestel",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/VESTL.png"
+  },
+  {
+    "stockCode": "YEOTK",
+    "stockName": "YEO Teknoloji Enerji",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/YEOTK.png"
+  },
+  {
+    "stockCode": "YKBNK",
+    "stockName": "Yapı ve Kredi Bankası",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/ykbnk_icon.jpg"
+  },
+  {
+    "stockCode": "YYLGD",
+    "stockName": "Yayla Gıda",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/YYLGD_nBmnnuT.png"
+  },
+  {
+    "stockCode": "ZOREN",
+    "stockName": "Zorlu Enerji",
+    "stockImage": "https://fintables-prod.storage.googleapis.com/media/uploads/company-logos/zoren_icon.png"
+  }
+]
