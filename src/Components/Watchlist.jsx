@@ -4,41 +4,22 @@ import "../index.css";
 import FormDialog from "./FormDialog";
 
 const Watchlist = ({ stocks, onAddStock }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
   const [startY, setStartY] = useState(0);
   const [startScrollTop, setStartScrollTop] = useState(0);
 
-  // Function to toggle the modal state
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setStartY(e.clientY);
-    setStartScrollTop(e.target.scrollTop);
-  };
-
   const handleMouseMove = (e) => {
-    if (!isDragging) return;
     const deltaY = e.clientY - startY;
     e.target.scrollTop = startScrollTop - deltaY;
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
   };
 
   return (
     <div
       className="bg-white p-4 rounded-lg shadow-md mt-4 w-80 watchlist-container"
-      onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
     >
       <div className="flex items-center justify-between mb-4 ">
         <h2 className="text-2xl font-semibold ">My Watchlist</h2>
-        <FormDialog></FormDialog>
+        <FormDialog onAddStock={onAddStock}></FormDialog>
       </div>
       <div>
         <ul className="watchlist-scroll-container">
@@ -67,10 +48,14 @@ const Watchlist = ({ stocks, onAddStock }) => {
                 <div className="font-semibold">${stock.price}</div>
                 <div
                   className={
-                    stock.returnRate >= 0 ? "text-green-500" : "text-red-500"
+                    stock.pct === 0
+                      ? "text-gray-500" // Gray color for pct equal to 0
+                      : stock.pct < 0
+                      ? "text-red-500"
+                      : "text-green-500"
                   }
                 >
-                  {stock.returnRate}%
+                  {stock.pct}%
                 </div>
               </div>
             </li>
