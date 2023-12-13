@@ -1,23 +1,22 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
-export default function DonutChart() {
+export default function DonutChart({ tradeHistoryData }) {
   ChartJS.register(ArcElement, Tooltip, Legend);
 
-  var stockData = {
-    labels: ["DOHOL", "ASELS", "IZENR", "TATEN", "ENERY"],
-    prices: [10, 25, 15, 15, 35],
-  };
+  // Extract labels and prices from tradeHistoryData
+  const labels = tradeHistoryData.map((trade) => trade.stockName);
+  const prices = tradeHistoryData.map((trade) => trade.amount);
 
   return (
     <div>
       <Doughnut
         data={{
-          labels: stockData.labels,
+          labels: labels,
           datasets: [
             {
               label: "%",
-              data: stockData.prices,
+              data: prices,
               backgroundColor: [
                 "rgba(202, 240, 248, 1)",
                 "rgba(72, 202, 228, 1)",

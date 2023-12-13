@@ -1,15 +1,21 @@
-import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import "./styles.css"; 
-const FormDialog = ({ onAddStock }) => {
-  const [open, setOpen] = React.useState(false);
-  const [stockName, setStockName] = React.useState("");
-  const [stockPrice, setStockPrice] = React.useState("");
+import "./buttonStyles.css";
+import React, { useState } from "react";
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
+
+const PortfolioPlusButton = ({ onAddTrade }) => {
+  const [open, setOpen] = useState(false);
+  const [stockName, setStockName] = useState("");
+  const [stockAmount, setStockAmount] = useState("");
+
+  const [stockBuyPrice, setStockBuyPrice] = React.useState("");
+  const [selectedDate, setSelectedDate] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -19,11 +25,21 @@ const FormDialog = ({ onAddStock }) => {
     setOpen(false);
   };
 
-  const handleAddStock = () => {
-    // Validate stockName and stockPrice if needed
-    onAddStock(stockName, parseFloat(stockPrice));
+  const handleAddTrade = () => {
+    // Validate inputs if needed
+    const newTrade = {
+      stockName,
+      amount: parseInt(stockAmount),
+      buyPrice: parseFloat(stockBuyPrice),
+      livePrice: 100, // You can set a default value or fetch it from somewhere
+      dateTime: selectedDate.toLocaleDateString("en-GB"),
+    };
+
+    onAddTrade(newTrade);
     setStockName("");
-    setStockPrice("");
+    setStockAmount("");
+    setStockBuyPrice("");
+    setSelectedDate("");
     handleClose();
   };
 
@@ -36,10 +52,10 @@ const FormDialog = ({ onAddStock }) => {
         +
       </button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Stock Add</DialogTitle>
+        <DialogTitle>Trade Add</DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ paddingBottom: 2 }}>
-            Choose the stock that you want to add to your Watchlist!
+            Add your traded stocks!
           </DialogContentText>
           <TextField
             autoFocus
@@ -67,11 +83,11 @@ const FormDialog = ({ onAddStock }) => {
             autoFocus
             margin="dense"
             id="price"
-            label="Stock Price"
+            label="Stock Amount"
             type="number" // Use type="number" for price
             fullWidth
-            value={stockPrice}
-            onChange={(e) => setStockPrice(e.target.value)}
+            value={stockAmount}
+            onChange={(e) => setStockAmount(e.target.value)}
             InputLabelProps={{
               className: "input-label",
             }}
@@ -85,6 +101,38 @@ const FormDialog = ({ onAddStock }) => {
                 },
             }}
           />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="price"
+            label="Stock Buy Price"
+            type="number" // Use type="number" for price
+            fullWidth
+            value={stockBuyPrice}
+            onChange={(e) => setStockBuyPrice(e.target.value)}
+            InputLabelProps={{
+              className: "input-label",
+            }}
+            InputProps={{
+              className: "input-field",
+            }}
+            sx={{
+              "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                {
+                  borderColor: "gray",
+                },
+            }}
+          />
+          <label htmlFor="date" className="m-4">
+            Select Date:
+          </label>
+          <DatePicker
+            id="date"
+            selected={selectedDate}
+            onChange={(date) => setSelectedDate(date)}
+            dateFormat="dd/MM/yyyy"
+            className="w-full p-2 border border-gray-300 rounded-md"
+          />
         </DialogContent>
         <DialogActions>
           <button
@@ -95,7 +143,7 @@ const FormDialog = ({ onAddStock }) => {
           </button>
           <button
             className="text-xl text-gray-500 mr-2 p-2"
-            onClick={handleAddStock}
+            onClick={handleAddTrade}
           >
             Add
           </button>
@@ -105,4 +153,4 @@ const FormDialog = ({ onAddStock }) => {
   );
 };
 
-export default FormDialog;
+export default PortfolioPlusButton;

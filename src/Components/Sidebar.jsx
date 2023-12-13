@@ -44,7 +44,7 @@ export default function Sidebar() {
           Home
         </CustomLink>
         <CustomLink to={"/portfolio"} icon={<Wallet size={24} />}>
-          Porfolio
+          Portfolio
         </CustomLink>
         <CustomLink to={"/news"} icon={<Newspaper size={24} />}>
           KAP News
