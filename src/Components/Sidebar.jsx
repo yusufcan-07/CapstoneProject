@@ -17,7 +17,7 @@ export default function Sidebar() {
 
   return (
     <div className="bg-[#f5f7f9] w-80 h-full fixed top-0 left-0 shadow-md p-4 space-y-4">
-      <div className="text-lg p-4">HisseYat</div>
+      <div className="text-lg p-4">Stock Management App</div>
       <div className="rounded-lg container-height w-60 bg-[#1C1C1C] mx-4 p-4 text-white flex items-center space-x-4">
         <div>
           <div>Total invesment</div>

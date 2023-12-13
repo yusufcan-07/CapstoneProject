@@ -7,12 +7,15 @@ export default function SearchBar({ setSearchResults }) {
   const [input, setInput] = useState("");
   function fetchData(value) {
     const results = stockData.filter((data) => {
-      return (
-        value &&
-        data &&
-        data.stockCode &&
-        data.stockName.toLowerCase().includes(value)
-      );
+      if (value !== "") {
+        return (
+          (value &&
+            data &&
+            data.stockCode &&
+            data.stockName.toLowerCase().includes(value.toLowerCase())) ||
+          data.stockCode.toLowerCase().includes(value.toLowerCase())
+        );
+      }
     });
     setSearchResults(results);
   }

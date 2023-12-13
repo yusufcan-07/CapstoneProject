@@ -46,9 +46,9 @@ export default function Topbar() {
           <div className="mt-2">
             <Bell size={24} />
           </div>
-          <Avatar {...stringAvatar("Aurobindo Gill")} />
+          <Avatar {...stringAvatar("Yusufcan Ulusoy")} />
           <div className="flex ml-4 mx-2 mt-2">
-            Aurobindo Gill
+            Yusufcan Ulusoy
             <ChevronDown size={24} />
           </div>
         </div>
