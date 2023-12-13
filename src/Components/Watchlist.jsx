@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import placeholderImage from "../Assets/chart.png";
 import "../index.css";
-import FormDialog from "./FormDialog";
+import WatchlistPlusButton from "./Buttons/Watchlist_plus_button";
 
 const Watchlist = ({ stocks, onAddStock }) => {
   const [startY, setStartY] = useState(0);
@@ -19,7 +19,7 @@ const Watchlist = ({ stocks, onAddStock }) => {
     >
       <div className="flex items-center justify-between mb-4 ">
         <h2 className="text-2xl font-semibold ">My Watchlist</h2>
-        <FormDialog onAddStock={onAddStock}></FormDialog>
+        <WatchlistPlusButton onAddStock={onAddStock}></WatchlistPlusButton>
       </div>
       <div>
         <ul className="watchlist-scroll-container">
