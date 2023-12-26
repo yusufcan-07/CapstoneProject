@@ -28,22 +28,20 @@ export default function News() {
                   : relatedStocks;
               }
 
-              
-              let sentimentAnalysis = [];
-              if (title) {
-                sentimentAnalysis = await query({ inputs: title });
-              }
+              // let sentimentAnalysis = [];
+              // if (title) {
+              //   sentimentAnalysis = await query({ inputs: title });
+              // }
 
-              // Assuming the response is an array with one object
-              const sentiment = sentimentAnalysis.length > 0 ? sentimentAnalysis[0] : null;
-
+              // // Assuming the response is an array with one object
+              // const sentiment = sentimentAnalysis.length > 0 ? sentimentAnalysis[0] : null;
 
               return {
                 title,
                 date: item?.basic?.publishDate || "N/A",
                 companyName: item?.basic?.companyName || "Unknown",
                 stockCodes: combinedStocks,
-                sentiment, // Include sentiment in the state
+                // sentiment, // Include sentiment in the state
               };
             })
           );
@@ -71,11 +69,11 @@ export default function News() {
                 date={disclosure.date}
                 name={disclosure.companyName}
                 stockCodes={disclosure.stockCodes}
-                sentiment={disclosure.sentiment?.label}
+                // sentiment={disclosure.sentiment?.label}
               >
                 {/* Additional content here */}
                 <p>Stock Codes: {disclosure.stockCodes}</p>
-                <p>Sentiment: {disclosure.sentiment?.label || 'N/A'}</p> {/* Display sentiment label */}
+                {/* <p>Sentiment: {disclosure.sentiment?.label || 'N/A'}</p> */}
                 {/* Other child components or content */}
               </KAPContainer>
             </li>
