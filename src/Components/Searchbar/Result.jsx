@@ -2,13 +2,7 @@ import { useState, useEffect } from 'react';
 
 export default function Result({ result }) {
   const [openPrice, setOpenPrice] = useState(null);
-
-  const [selectedStock, setSelectedStock] = useState('AKSA');
-
-  const handleStockSelect = (stockName) => {
-    setSelectedStock(stockName);
-  };
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
