@@ -6,11 +6,13 @@ import Home from "./Pages/Home";
 import Portfolio from "./Pages/Portfolio";
 import News from "./Pages/News";
 import Settings from "./Pages/Settings";
+import { UserProvider } from "./Config/UserContext";
 
 import("tailwindcss").Config;
 
 function App() {
   return (
+    <UserProvider>
     <div>
       <Topbar />
       <Sidebar />
@@ -21,6 +23,7 @@ function App() {
         <Route path="/settings" element={<Settings />} />
       </Routes>
     </div>
+    </UserProvider>
   );
 }
 

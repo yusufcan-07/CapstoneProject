@@ -3,7 +3,12 @@ import SearchBar from "./Searchbar/Searchbar";
 import { React, useState, useRef } from "react";
 import Avatar from "@mui/material/Avatar";
 import SearchResults from "./Searchbar/SearchResult";
+import { useContext } from "react";
+import { UserContext } from "../Config/UserContext";
+
 export default function Topbar() {
+  const { profile } = useContext(UserContext);
+
   const [searchResults, setSearchResults] = useState([]);
 
   function stringToColor(string) {
@@ -46,9 +51,13 @@ export default function Topbar() {
           <div className="mt-2">
             <Bell size={24} />
           </div>
-          <Avatar {...stringAvatar("Yusufcan Ulusoy")} />
+          <Avatar
+            {...(profile
+              ? { src: profile.photoURL }
+              : stringAvatar(profile.displayName || "User"))}
+          />
           <div className="flex ml-4 mx-2 mt-2">
-            Yusufcan Ulusoy
+            {profile ? profile.displayName : "User"}
             <ChevronDown size={24} />
           </div>
         </div>
