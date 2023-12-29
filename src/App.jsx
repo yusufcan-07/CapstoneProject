@@ -7,7 +7,6 @@ import Portfolio from "./Pages/Portfolio";
 import News from "./Pages/News";
 import Settings from "./Pages/Settings";
 import { UserProvider } from "./Config/UserContext";
-
 import("tailwindcss").Config;
 
 function App() {

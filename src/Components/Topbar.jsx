@@ -32,11 +32,20 @@ export default function Topbar() {
   }
 
   function stringAvatar(name) {
+    // Fallback to "Default User" if name is not provided
+    name = name || "Default User";
+    // Split the name by spaces
+    const splitName = name.split(" ");
+    // Get the first character of the first part of the name
+    const firstInitial = splitName[0][0];
+    // Get the first character of the second part of the name if it exists
+    const secondInitial = splitName.length > 1 ? splitName[1][0] : "";
+
     return {
       sx: {
         bgcolor: stringToColor(name),
       },
-      children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+      children: `${firstInitial}${secondInitial}`,
     };
   }
 
@@ -53,11 +62,11 @@ export default function Topbar() {
           </div>
           <Avatar
             {...(profile
-              ? { src: profile.photoURL }
-              : stringAvatar(profile.displayName || "User"))}
+              ? stringAvatar(profile?.displayName)
+              : stringAvatar("Default User"))}
           />
           <div className="flex ml-4 mx-2 mt-2">
-            {profile ? profile.displayName : "User"}
+            {profile?.displayName || "Default User"}
             <ChevronDown size={24} />
           </div>
         </div>

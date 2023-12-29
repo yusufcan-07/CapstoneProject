@@ -9,32 +9,15 @@ import {
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import { useState, useContext } from "react";
 import { UserContext } from "../Config/UserContext";
-import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth } from "../Config/firebase";
-
+import LoginRegisterPopup from "./Buttons/LoginRegisterButton";
 export default function Sidebar() {
   const { isAuth, setIsAuth, profile, setProfile } = useContext(UserContext);
 
   const [hidden, setHidden] = useState(false);
   const toggleHidden = () => {
     setHidden(!hidden);
-  };
-
-  const handleAuthentication = async () => {
-    console.log("Authenticating user");
-
-    const provider = new GoogleAuthProvider();
-
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-
-      // Set to state
-      setIsAuth(true);
-      setProfile(user.providerData[0]);
-    } catch (err) {
-      console.error(err);
-    }
   };
 
   const handleLogout = async () => {
@@ -49,6 +32,23 @@ export default function Sidebar() {
       setProfile({});
     } catch (err) {
       console.error(err);
+    }
+  };
+
+  const handleAuthentication = ({ user, method }) => {
+    if (user) {
+      // Set user authenticated state, profile info, etc.
+      setIsAuth(true);
+      setProfile(user);
+
+      // You might want to do something different depending on the method
+      if (method === "email") {
+        // Email login specific logic
+      } else if (method === "google") {
+        // Google login specific logic
+      } else if (method === "register") {
+        // Registration specific logic
+      }
     }
   };
 
@@ -86,20 +86,24 @@ export default function Sidebar() {
         <CustomLink to={"/news"} icon={<Newspaper size={24} />}>
           KAP News
         </CustomLink>
-        <div className="flex justify-between mt-8 p-8">
-          <button
-            className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out"
-            onClick={handleAuthentication}
-          >
-            Login
-          </button>
-          <button
-            className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
+        <div className="flex justify-between mt-8 pt-8">
+          {!isAuth && (
+            <div>
+              <LoginRegisterPopup
+                onAuth={(data) => handleAuthentication(data)}
+              />
+            </div>
+          )}
+          {isAuth && (
+            <button
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          )}
         </div>
+
         <div className="sidebar-height" />
         <hr />
         <CustomLink to={"/settings"} icon={<Settings size={24} />}>
