@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import "./buttonStyles.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../Config/firebase";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { updateProfile } from "firebase/auth";
 import { UserContext } from "../../Config/UserContext";
 const RegistrationPopup = ({ open, onClose, onAuth }) => {

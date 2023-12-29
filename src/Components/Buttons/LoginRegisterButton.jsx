@@ -17,7 +17,7 @@ import RegistrationPopup from "./RegisterButton";
 import "./buttonStyles.css";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../Config/UserContext";
 
 const LoginRegisterPopup = ({ onAuth }) => {
@@ -26,6 +26,8 @@ const LoginRegisterPopup = ({ onAuth }) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = React.useState(false);
+  const [emailError, setEmailError] = React.useState("");
+  const [passwordError, setPasswordError] = React.useState("");
   const handleRegisterLinkClick = () => {
     setOpen(false); // Close the login popup
     setIsRegisterPopupOpen(true); // Open the registration popup
@@ -50,11 +52,26 @@ const LoginRegisterPopup = ({ onAuth }) => {
         email,
         password
       );
+
+      setEmailError("");
+      setPasswordError("");
       onAuth({ user: userCredential.user, method: "email" });
       handleClose();
     } catch (error) {
-      console.error(error);
-      // Handle errors here, such as displaying a message to the user
+      console.error("Firebase Error:", error);
+
+      // Check and handle specific error codes
+      if (error.code === "auth/invalid-credential") {
+        setPasswordError("Incorrect password");
+      } else if (error.code === "auth/user-not-found") {
+        setEmailError("User not found");
+      } else if (error.code === "auth/invalid-email") {
+        setEmailError("Invalid account");
+      } else {
+        // Generic error message for other types of errors
+        setEmailError("Login failed. ");
+        setPasswordError("Please try again.");
+      }
     }
   };
 
@@ -65,7 +82,8 @@ const LoginRegisterPopup = ({ onAuth }) => {
       handleClose();
     } catch (error) {
       console.error(error);
-      // Handle errors here
+      // Handle Google login errors
+      setEmailError("Google login failed");
     }
   };
   const handleAuthentication = ({ user, method }) => {
@@ -135,6 +153,8 @@ const LoginRegisterPopup = ({ onAuth }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               sx={{ mb: 2 }}
+              error={!!emailError}
+              helperText={emailError}
             />
             <TextField
               margin="dense"
@@ -146,6 +166,8 @@ const LoginRegisterPopup = ({ onAuth }) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               sx={{ mb: 2 }}
+              error={!!passwordError}
+              helperText={passwordError}
             />
             <Button
               onClick={handleEmailLogin}
