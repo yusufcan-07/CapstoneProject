@@ -5,11 +5,11 @@ import Chart from "react-apexcharts";
 
 const TemplateChart = () => {
   const [chartData, setChartData] = useState([]);
-  const [selectedStockName, setSelectedStockName] = useState('');
+  const [selectedStockName, setSelectedStockName] = useState("");
 
   useEffect(() => {
     // Retrieve selectedStockName from local storage
-    const savedStockName = localStorage.getItem('selectedStockName');
+    const savedStockName = localStorage.getItem("selectedStockName");
     if (savedStockName) {
       setSelectedStockName(savedStockName);
     }
@@ -19,7 +19,7 @@ const TemplateChart = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://api.allorigins.win/get?url=https://query1.finance.yahoo.com/v8/finance/chart/${selectedStockName}.IS?region=US&lang=en-US&includePrePost=false&interval=2m&useYfid=true&range=1d&corsDomain=finance.yahoo.com&.tsrc=finance`
+          `https://api.allorigins.win/get?url=https://query1.finance.yahoo.com/v8/finance/chart/${selectedStockName}.IS`
         );
 
         if (response.data.contents) {
@@ -37,7 +37,12 @@ const TemplateChart = () => {
               const low = candleData.low[index];
               const close = candleData.close[index];
 
-              if (open !== null && high !== null && low !== null && close !== null) {
+              if (
+                open !== null &&
+                high !== null &&
+                low !== null &&
+                close !== null
+              ) {
                 acc.push({
                   x: new Date(time * 1000),
                   y: [open, high, low, close],
@@ -61,16 +66,16 @@ const TemplateChart = () => {
   useEffect(() => {
     // Listen for changes in selectedStockName and refresh the chart
     const refreshChart = () => {
-      const savedStockName = localStorage.getItem('selectedStockName');
+      const savedStockName = localStorage.getItem("selectedStockName");
       if (savedStockName !== selectedStockName) {
         setSelectedStockName(savedStockName);
       }
     };
 
-    window.addEventListener('storage', refreshChart);
+    window.addEventListener("storage", refreshChart);
 
     return () => {
-      window.removeEventListener('storage', refreshChart);
+      window.removeEventListener("storage", refreshChart);
     };
   }, [selectedStockName]);
 
