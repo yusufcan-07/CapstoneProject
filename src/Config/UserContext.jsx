@@ -7,7 +7,6 @@ export const UserContext = createContext({});
 export const UserProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
   const [profile, setProfile] = useState({});
-  const [loading, setLoading] = useState(true); // New loading state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       console.log("Auth State Changed: ", user); // Log the user object
@@ -30,10 +29,8 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider
-      value={{ isAuth, profile, setIsAuth, setProfile, loading }}
-    >
-      {loading ? <div>Loading...</div> : children}
+    <UserContext.Provider value={{ isAuth, profile, setIsAuth, setProfile }}>
+      {children}
     </UserContext.Provider>
   );
 };

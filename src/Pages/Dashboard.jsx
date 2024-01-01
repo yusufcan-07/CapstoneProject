@@ -1,108 +1,22 @@
 /*Dashboard.jsx*/
 import Stock from "../Components/Stock";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import Watchlist from "../Components/Watchlist";
 import placeholderImage from "../Assets/chart.png";
 import TemplateChart from "../Components/TemplateChart";
-
+import { db } from "../Config/firebase";
+import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
+import { UserContext } from "../Config/UserContext";
 const stocksData = [
-  {
-    //TODO logoUrl koymak araştırılacak
-    id: 1,
-    logoUrl: { placeholderImage },
-    symbol: "A",
-    name: "Stock A",
-    price: 100,
-    totalAmount: 3000,
-    returnRate: 50,
-    miniChart: <div>Mini Chart A</div>,
-  },
-  {
-    id: 2,
-    logoUrl: { placeholderImage },
-    symbol: "A",
-    name: "Stock B",
-    price: 150,
-    totalAmount: 3000,
-    returnRate: 50,
-    miniChart: <div>Mini Chart A</div>,
-  },
-  {
-    id: 3,
-    logoUrl: { placeholderImage },
-    symbol: "A",
-    name: "Stock C",
-    price: 150,
-    totalAmount: 3000,
-    returnRate: 50,
-    miniChart: <div>Mini Chart A</div>,
-  },
-  {
-    id: 4,
-    logoUrl: { placeholderImage },
-    symbol: "A",
-    name: "Stock D",
-    price: 150,
-    totalAmount: 3000,
-    returnRate: 50,
-    miniChart: <div>Mini Chart A</div>,
-  },
-  {
-    id: 5,
-    logoUrl: { placeholderImage },
-    symbol: "A",
-    name: "Stock E",
-    price: 150,
-    totalAmount: 3000,
-    returnRate: 50,
-    miniChart: <div>Mini Chart A</div>,
-  },
-  {
-    id: 6,
-    logoUrl: { placeholderImage },
-    symbol: "A",
-    name: "Stock F",
-    price: 150,
-    totalAmount: 3000,
-    returnRate: 50,
-    miniChart: <div>Mini Chart A</div>,
-  },
-  {
-    id: 7,
-    logoUrl: { placeholderImage },
-    symbol: "A",
-    name: "Stock G",
-    price: 150,
-    totalAmount: 3000,
-    returnRate: 50,
-    miniChart: <div>Mini Chart A</div>,
-  },
-  {
-    id: 8,
-    logoUrl: { placeholderImage },
-    symbol: "A",
-    name: "Stock H",
-    price: 150,
-    totalAmount: 3000,
-    returnRate: 50,
-    miniChart: <div>Mini Chart A</div>,
-  },
-  {
-    id: 9,
-    logoUrl: { placeholderImage },
-    symbol: "A",
-    name: "Stock I",
-    price: 150,
-    totalAmount: 3000,
-    returnRate: 50,
-    miniChart: <div>Mini Chart A</div>,
-  },
   // Add more stock data as needed
 ];
 
 const Dashboard = () => {
   const elementRef = useRef(null);
   const [arrowDisable, setArrowDisable] = useState(true);
+  const { isAuth, setIsAuth, profile, setProfile } = useContext(UserContext);
+  const [portfolioData, setPortfolioData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [watchlistStocks, setWatchlistStocks] = useState([
     {
       id: 1,
@@ -171,7 +85,81 @@ const Dashboard = () => {
       }
     }, speed);
   };
+  const fetchTradesFromFirebase = async () => {
+    try {
+      const tradesCollectionRef = collection(
+        db,
+        `${profile.email}/tradeHistory/trades`
+      );
+      const tradesSnapshot = await getDocs(tradesCollectionRef);
+      const tradesList = tradesSnapshot.docs.map((doc) => doc.data());
+      return tradesList;
+    } catch (error) {
+      console.error("Error fetching trades from Firebase: ", error);
+      return []; // Return an empty array in case of error
+    }
+  };
+  // Fetch trades from Firebase and calculate portfolio data
+  useEffect(() => {
+    const getTrades = async () => {
+      if (isAuth) {
+        // Ensure that the user is authenticated
+        const trades = await fetchTradesFromFirebase();
+        const calculatedPortfolioData = trades.map((trade) => {
+          const totalAmount = trade.livePrice * trade.amount;
+          const totalReturn = (
+            (trade.livePrice / trade.buyPrice - 1) *
+            100
+          ).toFixed(2); // Rounded to two decimals
+          return {
+            ...trade,
+            totalAmount: Number(totalAmount),
+            returnRate: Number(totalReturn),
+            // Assuming you want to use the stockName as the name for the Stock component
+            name: trade.stockName,
+            price: trade.livePrice,
+          };
+        });
+        setPortfolioData(calculatedPortfolioData);
+      }
+      setLoading(false);
+    };
 
+    getTrades();
+  }, [isAuth]);
+  const renderPortfolio = () => {
+    // Show loading message first
+    if (loading) {
+      return <div className="text-center p-4">Loading your portfolio...</div>;
+    }
+
+    // Once loading is complete, check for authentication
+    if (!isAuth) {
+      return (
+        <div className="text-center p-4">
+          Please log in to view your portfolio.
+        </div>
+      );
+    }
+
+    // If authenticated and portfolio is empty
+    if (portfolioData.length === 0) {
+      return (
+        <div className="text-center p-4">
+          Your portfolio is empty. Start adding trades!
+        </div>
+      );
+    }
+    return portfolioData.map((stock, index) => (
+      <Stock
+        key={index}
+        name={stock.name}
+        price={stock.price}
+        totalAmount={stock.totalAmount}
+        returnRate={stock.returnRate}
+      />
+    ));
+  };
   return (
     <div className="container mx-auto mt-4 flex flex-col">
       <h1 className="text-2xl font-bold ">My Stock Portfolio</h1>
@@ -190,16 +178,7 @@ const Dashboard = () => {
         </div>
 
         <div className="flex portfolio-scroll-container" ref={elementRef}>
-          {stocksData.map((stock, index) => (
-            <Stock
-              key={index}
-              name={stock.name}
-              price={stock.price}
-              totalAmount={stock.totalAmount}
-              returnRate={stock.returnRate}
-              miniChart={stock.miniChart}
-            />
-          ))}
+          {renderPortfolio()}
         </div>
         <div className="items-center ml-4">
           <button
