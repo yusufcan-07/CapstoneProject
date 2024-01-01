@@ -30,6 +30,8 @@ export default function Sidebar() {
       // Clear state
       setIsAuth(false);
       setProfile({});
+
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }

@@ -1,44 +1,49 @@
 import ApexChart from "../Components/PortfolioChart";
 import DonutChart from "../Components/DonutChart";
 import PortfolioPlusButton from "../Components/Buttons/Portfolio_plus_button";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { db } from "../Config/firebase";
+import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
+import { UserContext } from "../Config/UserContext";
 export default function Portfolio() {
-  // Dummy trade history data
-  const [tradeHistoryData, setTradeHistoryData] = useState([
-    // Initial trade history data
-    {
-      stockName: "Stock A",
-      amount: 10,
-      buyPrice: 100,
-      livePrice: 120,
-      dateTime: "01/12/2023",
-    },
-    {
-      stockName: "Stock B",
-      amount: 15,
-      buyPrice: 150,
-      livePrice: 140,
-      dateTime: "05/12/2023",
-    },
-    {
-      stockName: "Stock C",
-      amount: 15,
-      buyPrice: 100,
-      livePrice: 140,
-      dateTime: "10/12/2023",
-    },
-    {
-      stockName: "Stock D",
-      amount: 80,
-      buyPrice: 5,
-      livePrice: 7,
-      dateTime: "11/12/2023",
-    },
-    // Add more trade history data as needed
-  ]);
-  const handleAddTrade = (newTrade) => {
+  const { isAuth, setIsAuth, profile, setProfile, loading } =
+    useContext(UserContext);
+  const [tradeHistoryData, setTradeHistoryData] = useState([]);
+  const handleAddTrade = async (newTrade) => {
+    console.log(
+      "Adding new trade for UID: ",
+      profile.uid,
+      "Trade data: ",
+      newTrade
+    ); // Log the UID and trade
+    const tradesCollectionRef = collection(
+      db,
+      `${profile.email}/tradeHistory/trades`
+    );
+    await addDoc(tradesCollectionRef, newTrade);
     setTradeHistoryData([...tradeHistoryData, newTrade]);
   };
+
+  const loadTradeData = async () => {
+    console.log("Loading trade data for UID: ", profile.uid);
+    const tradesCollectionRef = collection(
+      db,
+      `${profile.email}/tradeHistory/trades`
+    );
+    const q = query(tradesCollectionRef);
+    const querySnapshot = await getDocs(q);
+    const trades = [];
+    querySnapshot.forEach((doc) => {
+      trades.push(doc.data());
+    });
+    setTradeHistoryData(trades);
+  };
+  useEffect(() => {
+    if (!loading && profile && profile.uid) {
+      console.log("Profile is loaded, UID: ", profile.uid);
+      loadTradeData();
+    }
+  }, [profile, loading]);
 
   return (
     <div className="content">
