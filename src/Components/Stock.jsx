@@ -28,19 +28,27 @@ const Stock = ({ name, totalAmount, returnRate, logoUrl }) => {
       </div>
 
       <div className=" flex items-center text-md mb-2 justify-between">
-        Total Shares:
-        <div className="font-semibold pr-5">${totalAmount}</div>
+        Toplam Değer:
+        <span
+          className={
+            returnRate < 0
+              ? "text-red-500 font-semibold pr-6"
+              : "text-green-500 font-semibold pr-6"
+          }
+        >
+          {totalAmount}₺
+        </span>
       </div>
 
       {/* Second Column: Stock Name, Total Amount, and Return Rate */}
 
       <div className="flex items-center text-md mb-2 justify-between ">
-        Total Return:{" "}
+        Toplam Getiri:{" "}
         <span
           className={
-            returnRate >= 0
-              ? "text-green-500 font-semibold pr-6"
-              : "text-red-500-font-semibold pr-6"
+            returnRate < 0
+              ? "text-red-500 font-semibold pr-6"
+              : "text-green-500 font-semibold pr-6"
           }
         >
           {returnRate}%

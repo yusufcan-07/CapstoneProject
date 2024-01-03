@@ -52,20 +52,20 @@ const PortfolioPlusButton = ({ onAddTrade }) => {
         +
       </button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Trade Add</DialogTitle>
+        <DialogTitle>İşlem Ekleme</DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ paddingBottom: 2 }}>
-            Add your traded stocks!
+            Hisselerinizi ekleyin!
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="Stock Name"
+            label="Hisse Kodu"
             type="stock"
             fullWidth
             value={stockName}
-            onChange={(e) => setStockName(e.target.value)}
+            onChange={(e) => setStockName(e.target.value.toUpperCase())}
             InputLabelProps={{
               className: "input-label",
             }}
@@ -83,7 +83,7 @@ const PortfolioPlusButton = ({ onAddTrade }) => {
             autoFocus
             margin="dense"
             id="price"
-            label="Stock Amount"
+            label="Lot Sayısı"
             type="number" // Use type="number" for price
             fullWidth
             value={stockAmount}
@@ -105,7 +105,7 @@ const PortfolioPlusButton = ({ onAddTrade }) => {
             autoFocus
             margin="dense"
             id="price"
-            label="Stock Buy Price"
+            label="Alış Fiyatı"
             type="number" // Use type="number" for price
             fullWidth
             value={stockBuyPrice}
@@ -124,7 +124,7 @@ const PortfolioPlusButton = ({ onAddTrade }) => {
             }}
           />
           <label htmlFor="date" className="m-4">
-            Select Date:
+            Tarih Seçin:
           </label>
           <DatePicker
             id="date"
@@ -139,13 +139,13 @@ const PortfolioPlusButton = ({ onAddTrade }) => {
             className="text-xl text-gray-500 mr-2 p-2"
             onClick={handleClose}
           >
-            Cancel
+            Kapat
           </button>
           <button
             className="text-xl text-gray-500 mr-2 p-2"
             onClick={handleAddTrade}
           >
-            Add
+            Ekle
           </button>
         </DialogActions>
       </Dialog>

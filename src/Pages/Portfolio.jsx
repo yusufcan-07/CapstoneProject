@@ -47,7 +47,7 @@ export default function Portfolio() {
 
   return (
     <div className="content">
-      <h1 className="text-3xl font-bold mb-4">Portfolio</h1>
+      <h1 className="text-3xl font-bold mb-4">Kullanıcı Portföyu</h1>
       <div className="flex">
         <div
           className="border-2 rounded-md m-4 p-2"
@@ -58,7 +58,13 @@ export default function Portfolio() {
             alignItems: "center",
           }}
         >
-          <DonutChart tradeHistoryData={tradeHistoryData} />
+          {isAuth ? (
+            <DonutChart tradeHistoryData={tradeHistoryData} />
+          ) : (
+            <p className="text-red-500 text-2xl font-bold">
+              Please login or register to add your trades!
+            </p>
+          )}
         </div>
         <div className="border-2 rounded-md m-4 p-2" style={{ flex: "1" }}>
           <ApexChart tradeHistoryData={tradeHistoryData} />
@@ -67,18 +73,22 @@ export default function Portfolio() {
 
       <div className="m-4 p-2 border-2 rounded-md">
         <div className="flex items-center justify-between m-4">
-          <h2 className="text-lg font-bold">Trade History</h2>
-          <PortfolioPlusButton onAddTrade={handleAddTrade} />
+          <h2 className="text-lg font-bold">İşlem Geçmişi</h2>
+          {isAuth ? (
+            <PortfolioPlusButton onAddTrade={handleAddTrade} />
+          ) : (
+            <p className="text-red-500"></p>
+          )}
         </div>
         <div className="flex flex-col">
           <div className="flex font-bold p-3 m-3 border-2 border-black">
-            <div className="flex-1 text-center">Stock Name</div>
-            <div className="flex-1 text-center">Amount</div>
-            <div className="flex-1 text-center">Buy Price</div>
-            <div className="flex-1 text-center">Live Price</div>
-            <div className="flex-1 text-center">Profit/Loss</div>
-            <div className="flex-1 text-center">Percentage</div>
-            <div className="flex-1 text-center">Date and Time</div>
+            <div className="flex-1 text-center">Hisse Kodu</div>
+            <div className="flex-1 text-center">Lot Sayısı</div>
+            <div className="flex-1 text-center">Alış Fiyatı</div>
+            <div className="flex-1 text-center">Canlı Fiyat</div>
+            <div className="flex-1 text-center">Kar/Zarar</div>
+            <div className="flex-1 text-center">Yüzdelik Değişim</div>
+            <div className="flex-1 text-center">Tarih</div>
           </div>
           {tradeHistoryData.map((trade, index) => (
             <div
@@ -88,8 +98,8 @@ export default function Portfolio() {
             >
               <div className="flex-1 text-center">{trade.stockName}</div>
               <div className="flex-1 text-center">{trade.amount}</div>
-              <div className="flex-1 text-center">${trade.buyPrice}</div>
-              <div className="flex-1 text-center">${trade.livePrice}</div>
+              <div className="flex-1 text-center">{trade.buyPrice}₺</div>
+              <div className="flex-1 text-center">{trade.livePrice}₺</div>
               <div
                 className={`flex-1 text-center ${
                   (trade.livePrice - trade.buyPrice) * trade.amount === 0
@@ -99,7 +109,7 @@ export default function Portfolio() {
                     : "text-red-500"
                 }`}
               >
-                ${(trade.livePrice - trade.buyPrice) * trade.amount}
+                {(trade.livePrice - trade.buyPrice) * trade.amount}₺
               </div>
               <div
                 className={`flex-1 text-center ${

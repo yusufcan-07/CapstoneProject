@@ -7,10 +7,6 @@ import TemplateChart from "../Components/TemplateChart";
 import { db } from "../Config/firebase";
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import { UserContext } from "../Config/UserContext";
-const stocksData = [
-  // Add more stock data as needed
-];
-
 const Dashboard = () => {
   const elementRef = useRef(null);
   const [arrowDisable, setArrowDisable] = useState(true);
@@ -101,6 +97,8 @@ const Dashboard = () => {
   };
   // Fetch trades from Firebase and calculate portfolio data
   useEffect(() => {
+    setLoading(true);
+
     const getTrades = async () => {
       if (isAuth) {
         // Ensure that the user is authenticated
@@ -128,7 +126,6 @@ const Dashboard = () => {
     getTrades();
   }, [isAuth]);
   const renderPortfolio = () => {
-    // Show loading message first
     if (loading) {
       return <div className="text-center p-4">Loading your portfolio...</div>;
     }
@@ -136,8 +133,8 @@ const Dashboard = () => {
     // Once loading is complete, check for authentication
     if (!isAuth) {
       return (
-        <div className="text-center p-4">
-          Please log in to view your portfolio.
+        <div className="text-red-500 text-2xl font-bold">
+          Please login or register to view your portfolio.
         </div>
       );
     }
@@ -162,8 +159,8 @@ const Dashboard = () => {
   };
   return (
     <div className="container mx-auto mt-4 flex flex-col">
-      <h1 className="text-2xl font-bold ">My Stock Portfolio</h1>
-      <div className="w-full h-full rounded-md  p-8 border-2 bg-white mt-12 flex flex-row items-center">
+      <h1 className="text-2xl font-bold ">Kullanıcı Portföyü</h1>
+      <div className="w-full h-full rounded-md  p-8 border-2 bg-white mt-12 flex flex-row items-center justify-between">
         <div className="items-center mr-4">
           <button
             className="text-3xl text-gray-500 bg-gray-300 rounded-full w-10 h-10 flex items-center justify-center p-1 pb-2 pr-2"

@@ -18,7 +18,7 @@ const Watchlist = ({ stocks, onAddStock }) => {
       onMouseMove={handleMouseMove}
     >
       <div className="flex items-center justify-between mb-4 ">
-        <h2 className="text-2xl font-semibold ">My Watchlist</h2>
+        <h2 className="text-2xl font-semibold ">İzleme Listem</h2>
         <WatchlistPlusButton onAddStock={onAddStock}></WatchlistPlusButton>
       </div>
       <div>

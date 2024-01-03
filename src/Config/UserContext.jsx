@@ -22,7 +22,6 @@ export const UserProvider = ({ children }) => {
         setProfile({});
         console.log("User is not authenticated, profile cleared."); // Log when the user is not authenticated
       }
-      setLoading(false);
     });
 
     return () => unsubscribe();
