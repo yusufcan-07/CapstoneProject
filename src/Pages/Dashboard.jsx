@@ -98,7 +98,9 @@ const Dashboard = () => {
   // Fetch trades from Firebase and calculate portfolio data
   useEffect(() => {
     setLoading(true);
-
+    const timer = setTimeout(() => {
+      setLoading(false); // Set loading state to false after 5 seconds
+    }, 1000);
     const getTrades = async () => {
       if (isAuth) {
         // Ensure that the user is authenticated
@@ -120,18 +122,22 @@ const Dashboard = () => {
         });
         setPortfolioData(calculatedPortfolioData);
       }
-      setLoading(false);
     };
 
     getTrades();
+    return () => clearTimeout(timer);
   }, [isAuth]);
   const renderPortfolio = () => {
-    if (loading) {
-      return <div className="text-center p-4">Loading your portfolio...</div>;
+    if (loading && isAuth) {
+      return (
+        <div className="text-center text-2xl p-4">
+          Loading your portfolio...
+        </div>
+      );
     }
 
     // Once loading is complete, check for authentication
-    if (!isAuth) {
+    if (!isAuth && !loading) {
       return (
         <div className="text-red-500 text-2xl font-bold">
           Please login or register to view your portfolio.
@@ -140,7 +146,7 @@ const Dashboard = () => {
     }
 
     // If authenticated and portfolio is empty
-    if (portfolioData.length === 0) {
+    if (portfolioData.length === 0 && !loading) {
       return (
         <div className="text-center p-4">
           Your portfolio is empty. Start adding trades!
