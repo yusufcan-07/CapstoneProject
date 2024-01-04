@@ -13,59 +13,28 @@ const Dashboard = () => {
   const { isAuth, setIsAuth, profile, setProfile } = useContext(UserContext);
   const [portfolioData, setPortfolioData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [watchlistStocks, setWatchlistStocks] = useState([
-    {
-      id: 1,
-      logo: { placeholderImage },
-      name: "AAPL",
-      symbol: "AAPL",
-      price: 150.25,
-      pct: -1.1,
-    },
-    {
-      id: 2,
-      logo: { placeholderImage },
-      name: "TSLA",
-      symbol: "TSLA",
-      price: 150.25,
-      pct: 0.1,
-    },
-    {
-      id: 3,
-      logo: { placeholderImage },
-      name: "AMZN",
-      symbol: "AMZN",
-      price: 15000.25,
-      pct: -0.1,
-    },
-    {
-      id: 4,
-      logo: { placeholderImage },
-      name: "GOOG",
-      symbol: "GOOG",
-      price: 1500.25,
-      pct: -20.1,
-    },
-    {
-      id: 5,
-      logo: { placeholderImage },
-      name: "MSFT",
-      symbol: "MSFT",
-      price: 150.25,
-      pct: 30.1,
-    },
-    // Add more stocks as needed
-  ]);
-  const handleAddStock = (stockName, stockPrice) => {
+  const [watchlistStocks, setWatchlistStocks] = useState([]);
+  const handleWatchlistAddStock = async (stockName, stockPrice) => {
     const newStock = {
-      id: watchlistStocks.length + 1,
       name: stockName,
-      symbol: "DEF", // Default to "DEF" if no name is provided
+      symbol: stockName,
       price: stockPrice,
-      pct: 0, // Default percentage to 0
+      pct: 0,
     };
-    setWatchlistStocks([...watchlistStocks, newStock]);
+    try {
+      const docRef = await addDoc(
+        collection(db, `${profile.email}/watchlist/stocks`),
+        newStock
+      );
+      setWatchlistStocks((prevWatchlist) => [
+        ...prevWatchlist,
+        { ...newStock, id: docRef.id },
+      ]);
+    } catch (error) {
+      console.error("Error adding stock to Firebase: ", error);
+    }
   };
+
   const handleHorizantalScroll = (element, speed, distance, step) => {
     let scrollAmount = 0;
     const slideTimer = setInterval(() => {
@@ -93,6 +62,23 @@ const Dashboard = () => {
     } catch (error) {
       console.error("Error fetching trades from Firebase: ", error);
       return []; // Return an empty array in case of error
+    }
+  };
+
+  const fetchWatchlistFromFirebase = async () => {
+    try {
+      const watchlistCollectionRef = collection(
+        db,
+        `${profile.email}/watchlist/stocks`
+      );
+      const watchlistSnapshot = await getDocs(watchlistCollectionRef);
+      const watchlist = watchlistSnapshot.docs.map((doc) => ({
+        id: doc.id, // Get the document ID from Firebase
+        ...doc.data(),
+      }));
+      setWatchlistStocks(watchlist);
+    } catch (error) {
+      console.error("Error fetching watchlist from Firebase: ", error);
     }
   };
   // Fetch trades from Firebase and calculate portfolio data
@@ -125,6 +111,9 @@ const Dashboard = () => {
     };
 
     getTrades();
+    if (isAuth) {
+      fetchWatchlistFromFirebase();
+    }
     return () => clearTimeout(timer);
   }, [isAuth]);
   const renderPortfolio = () => {
@@ -148,7 +137,7 @@ const Dashboard = () => {
     // If authenticated and portfolio is empty
     if (portfolioData.length === 0 && !loading) {
       return (
-        <div className="text-center p-4">
+        <div className="text-center p-4 text-2xl">
           Your portfolio is empty. Start adding trades!
         </div>
       );
@@ -162,6 +151,31 @@ const Dashboard = () => {
         returnRate={stock.returnRate}
       />
     ));
+  };
+  const renderWatchlist = () => {
+    if (loading && isAuth) {
+      return <div className="text-center  p-4">Loading your Watchlist...</div>;
+    }
+    if (!isAuth && !loading) {
+      return (
+        <div className="text-red-500  font-bold">
+          Please login or register to view your watchlist.
+        </div>
+      );
+    }
+    if (portfolioData.length === 0 && !loading) {
+      return (
+        <div className="text-center p-4 ">
+          Your Watchlist is empty. Start adding stocks!
+        </div>
+      );
+    }
+    return (
+      <Watchlist
+        stocks={watchlistStocks}
+        onAddStock={handleWatchlistAddStock}
+      />
+    );
   };
   return (
     <div className="container mx-auto mt-4 flex flex-col">
@@ -207,7 +221,7 @@ const Dashboard = () => {
         </div>
 
         <div className=" w-full h-full rounded-md  p-8 border-2 bg-white mt-4 ml-4 flex-1 ">
-          <Watchlist stocks={watchlistStocks} onAddStock={handleAddStock} />
+          {renderWatchlist()}
         </div>
       </div>
     </div>

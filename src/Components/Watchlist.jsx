@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import placeholderImage from "../Assets/chart.png";
 import "../index.css";
 import WatchlistPlusButton from "./Buttons/Watchlist_plus_button";
@@ -45,7 +45,7 @@ const Watchlist = ({ stocks, onAddStock }) => {
               </div>
               {/* Stock Price and Daily Change Percentage */}
               <div className="flex flex-col text-right">
-                <div className="font-semibold">${stock.price}</div>
+                <div className="font-semibold">{stock.price}₺</div>
                 <div
                   className={
                     stock.pct === 0
