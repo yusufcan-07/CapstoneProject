@@ -5,6 +5,7 @@ import {
   Settings,
   EyeOff,
   MoveUp,
+  Bot
 } from "lucide-react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import { useState } from "react";
@@ -48,6 +49,9 @@ export default function Sidebar() {
         </CustomLink>
         <CustomLink to={"/news"} icon={<Newspaper size={24} />}>
           KAP News
+        </CustomLink>
+        <CustomLink to={"/bot"} icon={<Bot size={24} />}>
+          Buy&Sell Bot
         </CustomLink>
         <div className="sidebar-height" />
         <hr />

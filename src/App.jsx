@@ -6,6 +6,8 @@ import Home from "./Pages/Home";
 import Portfolio from "./Pages/Portfolio";
 import News from "./Pages/News";
 import Settings from "./Pages/Settings";
+import Bot from "./Pages/Bot";
+
 
 import("tailwindcss").Config;
 
@@ -19,6 +21,7 @@ function App() {
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/news" element={<News />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/bot" element={<Bot />} />
       </Routes>
     </div>
   );
