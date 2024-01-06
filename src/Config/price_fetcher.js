@@ -6,7 +6,10 @@ export async function fetchStockPrice(name) {
   const url = `${proxyUrl}${encodeURIComponent(yahooUrl)}`;
 
   try {
-    const response = await axios.get(url);
+    const response = await axios.get(url, {
+      method: "GET",
+      mode: "cors",
+    });
     const contents = JSON.parse(response.data.contents); // assuming allorigins.win wraps the response in a contents property
     const regularMarketPrice = contents.chart.result[0].meta.regularMarketPrice;
     return regularMarketPrice;
