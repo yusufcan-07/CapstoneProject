@@ -31,7 +31,6 @@ const PortfolioPlusButton = ({ onAddTrade }) => {
       stockName,
       amount: parseInt(stockAmount),
       buyPrice: parseFloat(stockBuyPrice),
-      livePrice: 100, // You can set a default value or fetch it from somewhere
       dateTime: selectedDate.toLocaleDateString("en-GB"),
     };
 

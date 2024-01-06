@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
 
-const ApexChart = ({ tradeHistoryData }) => {
+const ApexChart = ({ tradeHistoryData, livePrices }) => {
   const [chartData, setChartData] = useState({
     series: [
       {
@@ -29,9 +29,27 @@ const ApexChart = ({ tradeHistoryData }) => {
       },
     },
   });
+  const calculateCumulativeBalance = (tradeHistoryData, livePrices) => {
+    let cumulativeBalance = 0;
+    return tradeHistoryData.map((trade) => {
+      // Check if livePrices is defined and has a key for the current stock
+      const livePrice =
+        livePrices && livePrices[trade.stockName]
+          ? livePrices[trade.stockName]
+          : trade.buyPrice; // Fallback to buyPrice if livePrice isn't available
+
+      if (!isNaN(livePrice)) {
+        cumulativeBalance += trade.amount * livePrice;
+      }
+      return cumulativeBalance.toFixed(1);
+    });
+  };
 
   useEffect(() => {
-    const cumulativeBalanceData = calculateCumulativeBalance(tradeHistoryData);
+    const cumulativeBalanceData = calculateCumulativeBalance(
+      tradeHistoryData,
+      livePrices
+    );
 
     setChartData({
       series: [
@@ -48,15 +66,7 @@ const ApexChart = ({ tradeHistoryData }) => {
         },
       },
     });
-  }, [tradeHistoryData]);
-
-  const calculateCumulativeBalance = (tradeHistoryData) => {
-    let cumulativeBalance = 0;
-    return tradeHistoryData.map((trade) => {
-      cumulativeBalance += trade.amount * trade.livePrice;
-      return cumulativeBalance;
-    });
-  };
+  }, [tradeHistoryData, livePrices]);
 
   return (
     <div id="chart">

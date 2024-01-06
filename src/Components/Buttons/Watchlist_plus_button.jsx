@@ -49,7 +49,7 @@ const WatchlistPlusButton = ({ onAddStock }) => {
             type="stock"
             fullWidth
             value={stockName}
-            onChange={(e) => setStockName(e.target.value)}
+            onChange={(e) => setStockName(e.target.value.toUpperCase())}
             InputLabelProps={{
               className: "input-label",
             }}

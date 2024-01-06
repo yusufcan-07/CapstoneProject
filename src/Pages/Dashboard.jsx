@@ -7,6 +7,7 @@ import TemplateChart from "../Components/TemplateChart";
 import { db } from "../Config/firebase";
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import { UserContext } from "../Config/UserContext";
+import { fetchStockPrice } from "../Config/price_fetcher";
 const Dashboard = () => {
   const elementRef = useRef(null);
   const [arrowDisable, setArrowDisable] = useState(true);
@@ -19,7 +20,6 @@ const Dashboard = () => {
       name: stockName,
       symbol: stockName,
       price: stockPrice,
-      pct: 0,
     };
     try {
       const docRef = await addDoc(
@@ -57,7 +57,16 @@ const Dashboard = () => {
         `${profile.email}/tradeHistory/trades`
       );
       const tradesSnapshot = await getDocs(tradesCollectionRef);
-      const tradesList = tradesSnapshot.docs.map((doc) => doc.data());
+      const tradesList = await Promise.all(
+        tradesSnapshot.docs.map(async (doc) => {
+          const trade = doc.data();
+          const livePrice = await fetchStockPrice(trade.stockName);
+          return {
+            ...trade,
+            livePrice: livePrice || trade.buyPrice, // Fallback to buyPrice if livePrice is not available
+          };
+        })
+      );
       return tradesList;
     } catch (error) {
       console.error("Error fetching trades from Firebase: ", error);
@@ -72,10 +81,17 @@ const Dashboard = () => {
         `${profile.email}/watchlist/stocks`
       );
       const watchlistSnapshot = await getDocs(watchlistCollectionRef);
-      const watchlist = watchlistSnapshot.docs.map((doc) => ({
-        id: doc.id, // Get the document ID from Firebase
-        ...doc.data(),
-      }));
+      const watchlist = await Promise.all(
+        watchlistSnapshot.docs.map(async (doc) => {
+          const stock = doc.data();
+          const livePrice = await fetchStockPrice(stock.symbol);
+          return {
+            id: doc.id,
+            ...stock,
+            livePrice: livePrice || stock.price, // Fallback to stored price if livePrice is not available
+          };
+        })
+      );
       setWatchlistStocks(watchlist);
     } catch (error) {
       console.error("Error fetching watchlist from Firebase: ", error);
