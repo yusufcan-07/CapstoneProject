@@ -8,6 +8,7 @@ import { db } from "../Config/firebase";
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import { UserContext } from "../Config/UserContext";
 import { fetchStockPrice } from "../Config/price_fetcher";
+import stockData from "../Assets/stocks.json";
 const Dashboard = () => {
   const elementRef = useRef(null);
   const [arrowDisable, setArrowDisable] = useState(true);
@@ -15,12 +16,21 @@ const Dashboard = () => {
   const [portfolioData, setPortfolioData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [watchlistStocks, setWatchlistStocks] = useState([]);
-  const handleWatchlistAddStock = async (stockName, stockPrice) => {
+  const handleWatchlistAddStock = async (stockCode, stockPrice) => {
+    // Find the stock information based on the stockCode
+    const stockInfo = stockData.find((item) => item.stockCode === stockCode);
+
+    // If the stock is not found in the JSON file, you can decide how to handle it
+    // For this example, if the stock is not found, we'll use the stockCode as the name
+    const stockName = stockInfo ? stockInfo.stockName : stockCode;
+
     const newStock = {
       name: stockName,
-      symbol: stockName,
+      symbol: stockCode, // Assuming symbol is the stock code
       price: stockPrice,
+      // Add any other stock details you need here
     };
+
     try {
       const docRef = await addDoc(
         collection(db, `${profile.email}/watchlist/stocks`),
