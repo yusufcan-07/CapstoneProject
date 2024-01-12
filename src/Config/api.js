@@ -3,7 +3,7 @@ import axios from "axios";
 
 async function query(data) {
   try {
-    const response = await axios.post("http://127.0.0.1:5000//analyze-news/", {
+    const response = await axios.post("http://127.0.0.1:5000/analyze-news/", {
       content: data.inputs,
     });
     return response.data;

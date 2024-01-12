@@ -6,7 +6,7 @@ export default function KAPContainer({
   date,
   name,
   stockCodes,
-  // sentiment,
+  sentiment,
 }) {
   return (
     <div
@@ -22,7 +22,7 @@ export default function KAPContainer({
         <h2>{title}</h2>
         <p>{name}</p>
       </div>
-      {/* <div>{sentiment}</div> */}
+      <div>{sentiment}</div>
       <div>
         <p>{date}</p>
       </div>
