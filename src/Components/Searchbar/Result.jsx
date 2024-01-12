@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 export default function Result({ result }) {
   const [openPrice, setOpenPrice] = useState(null);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -19,8 +19,15 @@ export default function Result({ result }) {
     fetchData();
   }, [result.stockCode]);
 
+  const handleItemClick = (e) => {
+    // Save result.stockName into local storage
+    localStorage.setItem('selectedStockName', result.stockCode);
+    // Refresh the page
+    window.location.reload();
+  };
+
   return (
-    <div className="result flex items-center" onClick={(e) => alert(`You selected ${result.stockName}!`)}>
+    <div className="result flex items-center" onClick={handleItemClick}>
       <img
         src={result.stockImage}
         alt={result.stockName}

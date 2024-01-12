@@ -11,7 +11,7 @@
 }
 
 .sidebar-height {
-  height: 33rem; /* Your custom height value */
+  height: 31rem; /* Your custom height value */
 }
 
 .topbar-height {
@@ -72,3 +72,17 @@
 }
 
 /*Dashboard styles*/
+
+/* Bot style*/
+
+/* Add this CSS to your stylesheet or component */
+.stock-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.stock-table th, .stock-table td {
+  border: 1px solid #000;
+  padding: 8px;
+  text-align: left;
+}
