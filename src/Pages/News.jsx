@@ -1,46 +1,61 @@
 import React, { useEffect, useState } from "react";
 import KAPContainer from "../Components/KAPContainer";
+import { query } from "../Config/api";
 
 export default function News() {
   const [disclosures, setDisclosures] = useState([]);
 
   useEffect(() => {
-    fetch(
-      "https://api.allorigins.win/get?url=https://www.kap.org.tr/tr/api/disclosures"
-    )
-      .then((response) => response.json())
-      .then((result) => {
+    const fetchDisclosures = async () => {
+      try {
+        const response = await fetch(
+          "https://api.allorigins.win/get?url=https://www.kap.org.tr/tr/api/disclosures"
+        );
+        const result = await response.json();
         const responseData = JSON.parse(result.contents);
+
         if (Array.isArray(responseData) && responseData.length > 0) {
-          // Extracting required data from the array of responses
-          const extractedDisclosures = responseData
-            .map((item) => {
+          const extractedDisclosures = await Promise.all(
+            responseData.map(async (item) => {
+              const title = item?.basic?.title || "";
               const stockCodes = item?.basic?.stockCodes || "N/A";
               const relatedStocks = item?.basic?.relatedStocks || "N/A";
 
-              let combinedStocks = "N/A";
-              if (stockCodes !== "N/A" && relatedStocks !== "N/A") {
-                combinedStocks = stockCodes.concat(", ", relatedStocks);
-              } else if (stockCodes !== "N/A") {
-                combinedStocks = stockCodes;
-              } else if (relatedStocks !== "N/A") {
-                combinedStocks = relatedStocks;
+              let combinedStocks = stockCodes !== "N/A" ? stockCodes : "";
+              if (relatedStocks !== "N/A") {
+                combinedStocks += combinedStocks
+                  ? `, ${relatedStocks}`
+                  : relatedStocks;
               }
 
+              // let sentimentAnalysis = [];
+              // if (title) {
+              //   sentimentAnalysis = await query({ inputs: title });
+              // }
+
+              // // Assuming the response is an array with one object
+              // const sentiment = sentimentAnalysis.length > 0 ? sentimentAnalysis[0] : null;
+
               return {
-                title: item?.basic?.title || "",
+                title,
                 date: item?.basic?.publishDate || "N/A",
                 companyName: item?.basic?.companyName || "Unknown",
                 stockCodes: combinedStocks,
+                // sentiment, // Include sentiment in the state
               };
             })
-            .filter((disclosure) => disclosure.combinedStocks !== "N/A");
-          setDisclosures(extractedDisclosures);
+          );
+
+          setDisclosures(
+            extractedDisclosures.filter((disclosure) => disclosure.stockCodes)
+          );
         }
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching data:", error);
-      });
+      }
+    };
+
+    fetchDisclosures();
   }, []);
 
   return (
@@ -54,9 +69,11 @@ export default function News() {
                 date={disclosure.date}
                 name={disclosure.companyName}
                 stockCodes={disclosure.stockCodes}
+                // sentiment={disclosure.sentiment?.label}
               >
                 {/* Additional content here */}
                 <p>Stock Codes: {disclosure.stockCodes}</p>
+                {/* <p>Sentiment: {disclosure.sentiment?.label || 'N/A'}</p> */}
                 {/* Other child components or content */}
               </KAPContainer>
             </li>

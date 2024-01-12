@@ -53,6 +53,14 @@ export default function Sidebar() {
         <CustomLink to={"/bot"} icon={<Bot size={24} />}>
           Buy&Sell Bot
         </CustomLink>
+        <div className="flex justify-between mt-8 p-8">
+          <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out">
+            Login
+          </button>
+          <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out">
+            Logout
+          </button>
+        </div>
         <div className="sidebar-height" />
         <hr />
         <CustomLink to={"/settings"} icon={<Settings size={24} />}>
