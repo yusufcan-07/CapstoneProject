@@ -36,20 +36,20 @@ const WatchlistPlusButton = ({ onAddStock }) => {
         +
       </button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Stock Add</DialogTitle>
+        <DialogTitle>Hisse Ekle</DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ paddingBottom: 2 }}>
-            Choose the stock that you want to add to your Watchlist!
+            İzlemek istediğiniz hisseyi girin!
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="Stock Name"
+            label="Hisse Kodu"
             type="stock"
             fullWidth
             value={stockName}
-            onChange={(e) => setStockName(e.target.value)}
+            onChange={(e) => setStockName(e.target.value.toUpperCase())}
             InputLabelProps={{
               className: "input-label",
             }}
@@ -67,7 +67,7 @@ const WatchlistPlusButton = ({ onAddStock }) => {
             autoFocus
             margin="dense"
             id="price"
-            label="Stock Price"
+            label="Hisse Fiyatı"
             type="number" // Use type="number" for price
             fullWidth
             value={stockPrice}
@@ -91,13 +91,13 @@ const WatchlistPlusButton = ({ onAddStock }) => {
             className="text-xl text-gray-500 mr-2 p-2"
             onClick={handleClose}
           >
-            Cancel
+            Kapat
           </button>
           <button
             className="text-xl text-gray-500 mr-2 p-2"
             onClick={handleAddStock}
           >
-            Add
+            Ekle
           </button>
         </DialogActions>
       </Dialog>

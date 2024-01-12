@@ -1,16 +1,18 @@
 /*Stock.jsx*/
 import React from "react";
 import placeholderImage from "../Assets/chart.png"; // Default placeholder image for stocks
+import stockData from "../Assets/stocks.json";
+const Stock = ({ name, totalAmount, returnRate }) => {
+  const stockInfo = stockData.find((stock) => stock.stockCode === name);
+  const logoUrl = stockInfo.stockImage;
 
-const Stock = ({ name, totalAmount, returnRate, logoUrl }) => {
   return (
     <div className="shrink-0 w-60  rounded-lg p-4  mr-4 items-start">
       <div className="flex items-center justify-between">
         <div className="flex items-center ">
-          {/* First Column: Stock Logo */}
           <img
             src={logoUrl || placeholderImage}
-            alt="Stock Logo"
+            alt={`${name} Logo`}
             className="w-8 h-8 mr-2 rounded-full"
           />
 
@@ -28,19 +30,27 @@ const Stock = ({ name, totalAmount, returnRate, logoUrl }) => {
       </div>
 
       <div className=" flex items-center text-md mb-2 justify-between">
-        Total Shares:
-        <div className="font-semibold pr-5">${totalAmount}</div>
+        Toplam Değer:
+        <span
+          className={
+            returnRate < 0
+              ? "text-red-500 font-semibold pr-6"
+              : "text-green-500 font-semibold pr-6"
+          }
+        >
+          {totalAmount.toFixed(1)}₺
+        </span>
       </div>
 
       {/* Second Column: Stock Name, Total Amount, and Return Rate */}
 
       <div className="flex items-center text-md mb-2 justify-between ">
-        Total Return:{" "}
+        Toplam Getiri:{" "}
         <span
           className={
-            returnRate >= 0
-              ? "text-green-500 font-semibold pr-6"
-              : "text-red-500-font-semibold pr-6"
+            returnRate < 0
+              ? "text-red-500 font-semibold pr-6"
+              : "text-green-500 font-semibold pr-6"
           }
         >
           {returnRate}%
