@@ -109,7 +109,6 @@ export default function Sidebar() {
             </button>
           )}
         </div>
-
         <div className="sidebar-height" />
         <hr />
         <CustomLink to={"/settings"} icon={<Settings size={24} />}>
