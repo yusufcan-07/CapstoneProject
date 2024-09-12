@@ -1,8 +1,5 @@
-# React + Vite
+# Capstone Project - Stock Dashboard with ML Price Prediction
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+We, as group of two, developed simple-to-use stock price tracking web-app.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Also, we added a price prediction model to give some opinion about that stock investment.
